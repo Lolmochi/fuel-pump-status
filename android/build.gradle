@@ -1,0 +1,32 @@
+buildscript {
+    ext.kotlin_version = '1.7.10' // หรือเวอร์ชันล่าสุดที่ใช้งานได้
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.2.1' // ใช้เวอร์ชันล่าสุดที่ใช้งานได้
+        classpath 'com.google.gms:google-services:4.3.10' // ใช้เวอร์ชันล่าสุดที่ใช้งานได้
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.7.1' // (Optional) สำหรับ Firebase Crashlytics
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(":app")
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

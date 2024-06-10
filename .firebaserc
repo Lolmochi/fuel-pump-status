@@ -1,0 +1,10 @@
+{
+  "projects": {
+    "default": "fuel-pump-status"
+  },
+  "dataconnectEmulatorConfig": {
+    "postgres": {
+      "localConnectionString": "postgresql://localhost:5432?sslmode=disable"
+    }
+  }
+}
